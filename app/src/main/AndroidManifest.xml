@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ActCardCliente"
+            android:label="@string/title_activity_act_card_cliente"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ActMain"
             android:label="@string/title_activity_act_main"
             android:theme="@style/AppTheme.NoActionBar">
