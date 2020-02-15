@@ -8,21 +8,91 @@
     tools:context=".ActCardCliente"
     tools:showIn="@layout/act_card_cliente">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginRight="161dp"
-        android:layout_marginBottom="320dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/lbl_nome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtNome"
+        app:layout_constraintStart_toStartOf="@+id/txtNome"
+        app:layout_constraintTop_toBottomOf="@+id/txtNome" />
+
+    <TextView
+        android:id="@+id/txtEndereco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_endereco"
+        app:layout_constraintEnd_toEndOf="@+id/edtNome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtNome"
+        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
+
+    <EditText
+        android:id="@+id/edtEndereco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtEndereco"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/txtEndereco"
+        app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_email"
+        app:layout_constraintEnd_toEndOf="@+id/edtEndereco"
+        app:layout_constraintStart_toStartOf="@+id/edtEndereco"
+        app:layout_constraintTop_toBottomOf="@+id/edtEndereco" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintStart_toStartOf="@+id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <TextView
+        android:id="@+id/txtPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_phone"
+        app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+        app:layout_constraintStart_toStartOf="@+id/edtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+    <EditText
+        android:id="@+id/edtPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/txtPhone"
+        app:layout_constraintStart_toStartOf="@+id/txtPhone"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
