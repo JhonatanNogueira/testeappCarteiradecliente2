@@ -78,7 +78,8 @@ public class ActCardCliente extends AppCompatActivity {
         }
 
         private boolean isEmailValido(String email){
-            boolean resultado = (isCampoVazio(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+
+            boolean resultado = (!isCampoVazio(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
             return resultado;
         }
 
