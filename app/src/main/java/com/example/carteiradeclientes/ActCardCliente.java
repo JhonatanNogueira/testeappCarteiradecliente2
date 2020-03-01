@@ -3,6 +3,12 @@ package com.example.carteiradeclientes;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -10,20 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.text.TextUtils;
-import android.util.Patterns;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import com.example.carteiradeclientes.Database.DadosOpenHelper;
 import com.example.carteiradeclientes.dominio.entidades.Cliente;
 import com.example.carteiradeclientes.dominio.repositorio.ClienteRepositorio;
 import com.google.android.material.snackbar.Snackbar;
-import java.lang.String;
 
 public class ActCardCliente extends AppCompatActivity {
 
