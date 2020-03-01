@@ -1,11 +1,14 @@
 package com.example.carteiradeclientes;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -16,12 +19,35 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.carteiradeclientes.Database.DadosOpenHelper;
+import com.example.carteiradeclientes.dominio.entidades.Cliente;
+import com.example.carteiradeclientes.dominio.repositorio.ClienteRepositorio;
+import com.google.android.material.snackbar.Snackbar;
+import java.lang.String;
+
 public class ActCardCliente extends AppCompatActivity {
 
     private EditText edtNome;
     private EditText edtEndereco;
     private EditText edtEmail;
     private EditText edtPhone;
+
+    private ConstraintLayout layoutContentActCardCliente;
+
+
+//clienterepositorio para inserir, alterar excluir e pesquisar
+
+    private ClienteRepositorio clienteRepositorio;
+
+// Conexão com o banco de dados/import de funcionaridades
+
+    private SQLiteDatabase conexao;
+    private DadosOpenHelper dadosOpenHelper;
+    private ConstraintLayout layoutContentMain;
+
+// Conexão do metodo inserir
+
+    private Cliente cliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +61,63 @@ public class ActCardCliente extends AppCompatActivity {
         edtEmail    = (EditText)findViewById(R.id.edtEmail);
         edtPhone    = (EditText)findViewById(R.id.edtPhone);
 
+        layoutContentActCardCliente = (ConstraintLayout)findViewById(R.id.layoutContentActCardCliente);
+
+        criarConexao();
     }
 
-        private void validaCampos(){
+    private void criarConexao(){
+
+        try{
+
+            dadosOpenHelper = new DadosOpenHelper(this);
+
+            conexao = dadosOpenHelper.getWritableDatabase();
+
+            Snackbar.make(layoutContentActCardCliente, R.string.message_conexao_criada, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.action_ok, null).show();
+
+            clienteRepositorio = new ClienteRepositorio(conexao);
+
+        }catch (SQLException ex){
+
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle(R.string.title_erro);
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton(R.string.action_ok, null);
+            dlg.show();
+
+
+        }
+    }
+        private void confirmar(){
+
+            cliente = new Cliente();
+
+            if (validaCampos() == false){
+
+                try{
+
+                    clienteRepositorio.inserir(cliente);
+
+                    finish();
+
+                }catch (SQLException ex){
+
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+                    dlg.setTitle(R.string.title_erro);
+                    dlg.setMessage(ex.getMessage());
+                    dlg.setNeutralButton(R.string.action_ok, null);
+                    dlg.show();
+
+
+                }
+            }
+
+        }
+
+
+        private boolean validaCampos(){
 
             boolean res = false;
 
@@ -45,6 +125,11 @@ public class ActCardCliente extends AppCompatActivity {
             String endereco = edtEndereco.getText().toString();
             String email    = edtEmail.getText().toString();
             String telefone = edtPhone.getText().toString();
+
+            cliente.nome     = nome;
+            cliente.endereco = endereco;
+            cliente.email    = email;
+            cliente.phone    = telefone;
 
             if (res = isCampoVazio(nome)){
                 edtNome.requestFocus();
@@ -69,6 +154,8 @@ public class ActCardCliente extends AppCompatActivity {
                 dlg.setNeutralButton(R.string.action_ok, null);
                 dlg.show();
             }
+
+            return res;
         }
 
         private boolean isCampoVazio(String valor){
@@ -101,7 +188,7 @@ public class ActCardCliente extends AppCompatActivity {
 
             case R.id.action_ok:
 
-                validaCampos();
+                confirmar();
                 //Toast.makeText(this, "Botão OK Selecionado", Toast.LENGTH_SHORT).show();
 
                 break;

@@ -8,6 +8,7 @@ import com.example.carteiradeclientes.dominio.entidades.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.String;
 
 public class ClienteRepositorio {
 
@@ -20,7 +21,7 @@ public class ClienteRepositorio {
     public void inserir(Cliente cliente) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Nome", cliente.nome);
+        contentValues.put("NOME", cliente.nome);
         contentValues.put("ENDERECO", cliente.endereco);
         contentValues.put("EMAIL", cliente.email);
         contentValues.put("TELEFONE", cliente.phone);
@@ -41,7 +42,7 @@ public class ClienteRepositorio {
     public void alterar(Cliente cliente) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Nome", cliente.nome);
+        contentValues.put("NOME", cliente.nome);
         contentValues.put("ENDERECO", cliente.endereco);
         contentValues.put("EMAIL", cliente.email);
         contentValues.put("TELEFONE", cliente.phone);
@@ -71,11 +72,11 @@ public class ClienteRepositorio {
 
                 Cliente cli = new Cliente();
 
-                cli.codigo = resultado.getInt(resultado.getColumnIndexOrThrow("CODIGO"));
-                cli.nome = resultado.getInt(resultado.getColumnIndexOrThrow("NOME"));
-                cli.endereco = resultado.getInt(resultado.getColumnIndexOrThrow("ENDERECO"));
-                cli.email = resultado.getInt(resultado.getColumnIndexOrThrow("EMAIL"));
-                cli.phone = resultado.getInt(resultado.getColumnIndexOrThrow("TELEFONE"));
+                cli.codigo   = resultado.getInt(resultado.getColumnIndexOrThrow("CODIGO"));
+                cli.nome     = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("NOME")));
+                cli.endereco = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("ENDERECO")));
+                cli.email    = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("EMAIL")));
+                cli.phone   = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("TELEFONE")));
 
                 clientes.add(cli);
 
@@ -105,11 +106,11 @@ public class ClienteRepositorio {
 
             resultado.moveToFirst();
 
-            cliente.codigo = resultado.getInt(resultado.getColumnIndexOrThrow("CODIGO"));
-            cliente.nome = resultado.getInt(resultado.getColumnIndexOrThrow("NOME"));
-            cliente.endereco = resultado.getInt(resultado.getColumnIndexOrThrow("ENDERECO"));
-            cliente.email = resultado.getInt(resultado.getColumnIndexOrThrow("EMAIL"));
-            cliente.phone = resultado.getInt(resultado.getColumnIndexOrThrow("TELEFONE"));
+            cliente.codigo      = resultado.getInt(resultado.getColumnIndexOrThrow("CODIGO"));
+            cliente.nome        = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("NOME")));
+            cliente.endereco    = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("ENDERECO")));
+            cliente.email       = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("EMAIL")));
+            cliente.phone       = String.valueOf(resultado.getInt(resultado.getColumnIndexOrThrow("TELEFONE")));
 
             return cliente;
         }
