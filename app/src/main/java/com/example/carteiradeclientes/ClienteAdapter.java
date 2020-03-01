@@ -48,6 +48,7 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ViewHold
      //       return holderCliente;
             //Activity activity;
             //return layout;
+        //aaaaaperdidaço
     }
 
     @Override
