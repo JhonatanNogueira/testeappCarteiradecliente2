@@ -66,7 +66,7 @@ public class ActCardCliente extends AppCompatActivity {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(this);
                 dlg.setTitle(R.string.title_aviso);
                 dlg.setMessage(R.string.message_campos_invalidos_brancos);
-                dlg.setNeutralButton(R.string.lbl_ok, null);
+                dlg.setNeutralButton(R.string.action_ok, null);
                 dlg.show();
             }
         }
